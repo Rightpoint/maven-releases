@@ -3,11 +3,12 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.raizlabs.android</groupId>
-  <artifactId>Broker-Compiler</artifactId>
+  <artifactId>Parser</artifactId>
   <version>1.0.0</version>
-  <name>Broker-Compiler</name>
-  <description>Broker</description>
-  <url>https://github.com/Raizlabs/Broker</url>
+  <packaging>aar</packaging>
+  <name>Parser</name>
+  <description>Parser</description>
+  <url>https://github.com/Raizlabs/Parser</url>
   <licenses>
     <license>
       <name>The MIT License</name>
@@ -22,26 +23,14 @@
     </developer>
   </developers>
   <scm>
-    <connection>scm:git@github.com:Raizlabs/Broker.git</connection>
-    <developerConnection>scm:git@github.com:Raizlabs/Broker.git</developerConnection>
-    <url>https://github.com/Raizlabs/Broker.git</url>
+    <connection>scm:git@github.com:Raizlabs/Parser.git</connection>
+    <developerConnection>scm:git@github.com:Raizlabs/Parser.git</developerConnection>
+    <url>https://github.com/Raizlabs/Parser.git</url>
   </scm>
   <dependencies>
     <dependency>
-      <groupId>com.squareup</groupId>
-      <artifactId>javawriter</artifactId>
-      <version>2.5.0</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.google.auto.service</groupId>
-      <artifactId>auto-service</artifactId>
-      <version>1.0+</version>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>com.raizlabs.android</groupId>
-      <artifactId>Broker-Core</artifactId>
+      <artifactId>Parser-Core</artifactId>
       <version>1.0.0</version>
       <scope>compile</scope>
     </dependency>
