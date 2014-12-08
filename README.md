@@ -9,7 +9,7 @@ This repository contains versions for Android libraries using Maven.
 
 buildscript {
   repositories {
-    maven { url "https://github.com/Raizlabs/maven-releases" }
+    maven { url "https://raw.github.com/Raizlabs/maven-releases/master/" }
   }
 }
 
