@@ -7,9 +7,9 @@ This repository contains versions for Android libraries using Maven.
 
 ```groovy
 
-buildscript {
+subprojects {
   repositories {
-    maven { url "https://raw.github.com/Raizlabs/maven-releases/master/" }
+        maven { url "https://raw.github.com/Raizlabs/maven-releases/master/releases" }
   }
 }
 
