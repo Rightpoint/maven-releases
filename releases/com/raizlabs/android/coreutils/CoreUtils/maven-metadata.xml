@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.raizlabs.android.coreutils</groupId>
+  <artifactId>CoreUtils</artifactId>
+  <version>1.0.0</version>
+  <versioning>
+    <versions>
+      <version>1.0.0</version>
+    </versions>
+    <lastUpdated>20150331184057</lastUpdated>
+  </versioning>
+</metadata>
