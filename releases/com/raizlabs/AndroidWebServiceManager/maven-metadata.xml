@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.raizlabs</groupId>
+  <artifactId>AndroidWebServiceManager</artifactId>
+  <version>2.0.0</version>
+  <versioning>
+    <versions>
+      <version>2.0.0</version>
+    </versions>
+    <lastUpdated>20150513195000</lastUpdated>
+  </versioning>
+</metadata>
