@@ -11,10 +11,14 @@
  * - Include the following fields in gradle.properties (Project Properties)
  *      * VERSION_NAME: The version name to be used when imported (e.g. x.y.z format)
  *      * ARTIFACT_NAME: The name of the android library
- *	* GROUP_NAME: The group name of this library (e.g. com.raizlabs)
+ *      * GROUP_NAME: The group name of this library (e.g. com.raizlabs)
  *      * LIBRARY_DESCRIPTION: A brief description of the library
  *      * GIT_URL: https://github.com/Raizlabs/LibraryName.git
  *      * SITE_URL: https://github.com/Raizlabs/LibraryName
+ * - Run the following gradle commands:
+ *      * ./gradlew install
+ *      * ./gradle bintrayUpload
+ * - After the artifacts are uploaded make sure they are linked to JCenter in bintray console.
  *
  * Please note: Its recommended you create a package in bintray repo 'Libraries' and provide all the required details for the package.
  * This script DOES NOT automatically fill in those information but assumes that the information already exists for that package such as detailed description, tags etc.
