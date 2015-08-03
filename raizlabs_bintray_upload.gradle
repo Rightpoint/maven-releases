@@ -11,6 +11,7 @@
  * - Include the following fields in gradle.properties (Project Properties)
  *      * VERSION_NAME: The version name to be used when imported (e.g. x.y.z format)
  *      * ARTIFACT_NAME: The name of the android library
+ *	* GROUP_NAME: The group name of this library (e.g. com.raizlabs)
  *      * LIBRARY_DESCRIPTION: A brief description of the library
  *      * GIT_URL: https://github.com/Raizlabs/LibraryName.git
  *      * SITE_URL: https://github.com/Raizlabs/LibraryName
@@ -20,8 +21,6 @@
  */
 apply plugin: "com.jfrog.bintray"
 apply plugin: 'com.github.dcendents.android-maven'
-
-GROUP_NAME = ‘com.raizlabs’
 
 //Generate POM files needed to publish the artifacts to JCenter public Repo
 install {
