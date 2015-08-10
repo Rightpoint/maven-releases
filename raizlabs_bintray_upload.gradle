@@ -5,20 +5,25 @@
  * - Generate the required POM file needed to publish the artifacts to JCenter public Repo for single line import by public users
  *
  * How to use this script:
+ * - Include the following dependencies to the project wide build.gradle file:
+ *      E.g. versions as of this writing (check for updates, when possible)
+ *      classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.2'
+ *      classpath 'com.github.dcendents:android-maven-plugin:1.2'
+ *      Note: Maven plugin v1.2 works properly with gradle version 2.3 and lower and has issues with anything higher.
  * - Include the following fields in local.properties file:
- *      * bintray_user: User name registered in bintray account
- *      * bintray_key: The key generated in bintray account from the password to authenticate upload
+ *      * bintray_user= User name registered in bintray account
+ *      * bintray_key= The key generated in bintray account from the password to authenticate upload
  * - Include the following fields in gradle.properties (Project Properties)
- *      * VERSION_NAME: The version name to be used when imported (e.g. x.y.z format)
- *      * ARTIFACT_NAME: The name of the android library
- *      * GROUP_NAME: The group name of this library (e.g. com.raizlabs)
- *      * LIBRARY_DESCRIPTION: A brief description of the library
- *      * GIT_URL: https://github.com/Raizlabs/LibraryName.git
- *      * SITE_URL: https://github.com/Raizlabs/LibraryName
+ *      * VERSION_NAME= The version name to be used when imported (e.g. x.y.z format)
+ *      * ARTIFACT_NAME= The name of the android library
+ *      * GIT_URL= https://github.com/Raizlabs/LibraryName.git
+ *      * SITE_URL= https://github.com/Raizlabs/LibraryName
+ * - Include this script to the module level build.gradle file:
+ *      * apply from: 'https://raw.githubusercontent.com/Raizlabs/maven-releases/master/raizlabs_bintray_upload.gradle'
  * - Run the following gradle commands:
  *      * ./gradlew install
  *      * ./gradle bintrayUpload
- * - After the artifacts are uploaded make sure they are linked to JCenter in bintray console.
+ * - After the artifacts are uploaded make sure they are linked to JCenter in bintray console (This might take upto 12 hours for approval).
  *
  * Please note: Its recommended you create a package in bintray repo 'Libraries' and provide all the required details for the package.
  * This script DOES NOT automatically fill in those information but assumes that the information already exists for that package such as detailed description, tags etc.
@@ -30,7 +35,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 install {
     repositories.mavenInstaller.pom.project {
         packaging 'aar'
-        groupId GROUP_NAME
+        groupId 'com.raizlabs'
         artifactId ARTIFACT_NAME
 
         // Set your license
@@ -52,6 +57,7 @@ install {
 task androidJavadocs(type: Javadoc) {
     source = android.sourceSets.main.java.srcDirs
     classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+    failOnError = false
 }
 
 task androidJavadocsJar(type: Jar, dependsOn: androidJavadocs) {
