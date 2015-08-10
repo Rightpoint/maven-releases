@@ -35,7 +35,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 install {
     repositories.mavenInstaller.pom.project {
         packaging 'aar'
-        groupId 'com.raizlabs'
+        groupId GROUP_NAME
         artifactId ARTIFACT_NAME
 
         // Set your license
