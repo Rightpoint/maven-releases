@@ -11,6 +11,9 @@
  * Version 2.0
  */
 
+// Pull in remote plugins
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
 
 // Defining artifact properites for Maven export
 group = GROUP_NAME
