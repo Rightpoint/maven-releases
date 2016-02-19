@@ -1,0 +1,106 @@
+/**
+ * This gradle script is used to generate JavaDoc sources and jars, setup Maven artifacts, and publish them to Bintray.
+ *
+ * This file is mostly sourced and extrapolated from the following guide:
+ * http://blog.raffaeu.com/archive/2016/01/20/publish-android-library-to-maven-using-android-studio-1-5.aspx
+ *
+ * Project configuration must be set up through Gradle properties.
+ * Publishing credentials must be set up through local properties.
+ * See the readme for more instructions.
+ *
+ * This version is based off the following plugins and versions:
+ * 'com.android.tools.build:gradle:1.5.0'
+ * 
+ * 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+ * 'com.github.dcendents:android-maven-gradle-plugin:1.3'
+ *
+ * Version 2.0
+ */
+
+// Pull in remote plugins
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'com.github.dcendents.android-maven'
+
+// Defining artifact properites for Maven export
+group = GROUP_NAME
+version = VERSION_NAME
+
+// Force the publishing to use this artifact name as the output instead of pulling the module name
+archivesBaseName = ARTIFACT_NAME
+
+
+// Defines properties for the maven install configuration
+install {
+    // Override the Maven output
+    // These get injected into the POM and some are required for JCenter publication
+    // May be unnecessary if just being uploaded Bintray itself without publishing to JCenter
+    repositories.mavenInstaller.pom.project {
+        artifactId ARTIFACT_NAME
+
+        licenses {
+            license {
+                name LICENSE_NAME
+                url LICENSE_URL
+            }
+        }
+
+        scm {
+            connection GIT_URL
+            developerConnection GIT_URL
+            url SITE_URL
+        }
+    }
+}
+
+
+// Load properties from local.properties so that we can access config information
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
+// Defines properties for the Bintray publication
+bintray {
+    // Load the Bintray credentials from the local properties
+    user = properties.getProperty("bintray_user")
+    key = properties.getProperty("bintray_key")
+
+    // Define our packaging information based on the defined variables
+    pkg {
+        repo = BINTRAY_REPOSITORY // The name of the repository on Bintray to publish to
+        name = ARTIFACT_NAME // the name of the package in Bintray
+        userOrg = BINTRAY_ORGANIZATION // The name of the user's organization to publish to
+        publish = BINTRAY_PUBLISH // Whether the artifact should be published to JCenter automatically
+
+        version {
+            name = VERSION_NAME // The name of the version
+        }
+    }
+    configurations = ['archives']
+}
+
+
+// Include tasks for generating JavaDoc sources and jars
+// Needed to make docs and sources available from Bintray dependencies
+task generateSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
+
+task generateJavadocs(type: Javadoc) {
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath()
+            .join(File.pathSeparator))
+}
+
+task generateJavadocsJar(type: Jar) {
+    from generateJavadocs.destinationDir
+    classifier 'javadoc'
+}
+
+// Make sure that the JavaDoc is generated before we try to build the jar
+generateJavadocsJar.dependsOn generateJavadocs
+
+// Tell gradle that these Javadoc steps are required for our library
+artifacts {
+    archives generateJavadocsJar
+    archives generateSourcesJar
+}

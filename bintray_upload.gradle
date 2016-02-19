@@ -1,3 +1,8 @@
+/**
+ * WARNING: THIS SCRIPT IS NOW DEPRECATED
+ * Please use the bintray.gradle script in the root of this project instead
+ */
+
 apply plugin: "com.jfrog.bintray"
 apply plugin: 'com.github.dcendents.android-maven'
 

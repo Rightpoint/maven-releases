@@ -1,3 +1,8 @@
+/**
+ * WARNING: THIS SCRIPT IS NOW DEPRECATED
+ * Please use the bintray.gradle script in the root of this project instead
+ */
+
 /*** READ ME ***
  * Use this gradle script to perform the following operations
  * - Upload the android library (*.aar) to Bintray using user credentials
